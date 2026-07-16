@@ -8,12 +8,12 @@ logs/
 # secrets — never commit real profiles.yml
 profiles.yml
 !profiles.yml.example
+.user.yml
 
 # python
 .venv/
 __pycache__/
 
-*.pptx
+docs/slides_dbt_vs_pyspark.md
 
-slides_dbt_vs_pyspark.md
-week1-slides.md
+docs/week1-slides.md
