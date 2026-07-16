@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "One row per customer, cleaned."
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: email
+        tests: [not_null]
+
+  - name: stg_orders
+    description: "One row per order, cleaned."
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: product_id
+        tests:
+          - relationships:
+              to: ref('stg_products')
+              field: product_id
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['completed', 'returned', 'pending', 'cancelled']
+
+  - name: stg_products
+    description: "One row per product."
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+      - name: category
+        tests: [not_null]

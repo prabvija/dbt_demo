@@ -1,0 +1,12 @@
+version: 2
+
+# Sources = raw data that already exists in Snowflake (not built by dbt).
+# We reference them with source('raw', '<table>') instead of hard-coding names.
+sources:
+  - name: raw
+    database: "{{ target.database }}"
+    schema:   "{{ target.schema }}_raw"   # matches seeds +schema: raw
+    tables:
+      - name: raw_customers
+      - name: raw_orders
+      - name: raw_products

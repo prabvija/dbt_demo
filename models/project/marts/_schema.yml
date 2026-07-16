@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "One row per customer with lifetime metrics."
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+
+  - name: fct_orders
+    description: "One row per order (incremental)."
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+
+  - name: fct_daily_sales
+    description: "Daily revenue and order counts per product category."
+    columns:
+      - name: order_date
+        tests: [not_null]
+      - name: category
+        tests: [not_null]

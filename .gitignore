@@ -1,0 +1,14 @@
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+*.duckdb
+*.duckdb.wal
+
+# secrets — never commit real profiles.yml
+profiles.yml
+!profiles.yml.example
+
+# python
+.venv/
+__pycache__/

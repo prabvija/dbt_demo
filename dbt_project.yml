@@ -1,0 +1,31 @@
+name: 'practice_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'practice_dbt'
+
+model-paths:  ["models"]
+seed-paths:   ["seeds"]
+macro-paths:  ["macros"]
+test-paths:   ["tests"]
+docs-paths:   ["docs"]
+
+# Two clean areas:
+#   examples/  → tiny standalone models used in the tech talk to explain concepts
+#   project/   → the mini end-to-end pipeline the class will run
+models:
+  practice_dbt:
+    examples:
+      +materialized: view
+      +schema: examples          # goes into <target_schema>_examples
+    project:
+      staging:      { +materialized: view }
+      intermediate: { +materialized: view }
+      marts:        { +materialized: table }
+
+seeds:
+  practice_dbt:
+    examples:
+      +schema: examples
+    project:
+      +schema: raw               # seeds land in <target_schema>_raw

@@ -1,0 +1,9 @@
+version: 2
+
+# The example seed lands in <target_schema>_examples (see dbt_project.yml).
+sources:
+  - name: examples_raw
+    database: "{{ target.database }}"
+    schema:   "{{ target.schema }}_examples"
+    tables:
+      - name: example_countries
