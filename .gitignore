@@ -12,3 +12,8 @@ profiles.yml
 # python
 .venv/
 __pycache__/
+
+*.pptx
+
+slides_dbt_vs_pyspark.md
+week1-slides.md
