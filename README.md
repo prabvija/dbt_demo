@@ -52,10 +52,20 @@ Copy the sample profile to your dbt home:
 
 ```bash
 mkdir -p ~/.dbt
-cp profiles.yml ~/.dbt/profiles.yml
+cp profiles.sample.yml ~/.dbt/profiles.yml
 ```
 
-Edit `~/.dbt/profiles.yml` and replace the placeholders with your Snowflake values. This project uses **external browser (SSO) auth** by default — a browser tab opens on first connect.
+Edit `~/.dbt/profiles.yml` and replace the placeholders with your Snowflake values. 
+
+```bash
+export ACCOUNT=<ACCOUNT>
+export USER=<USER>
+export PASSWORD=<PASSWORD>
+export SNOWFLAKE_ROLE=<ROLE>
+export WAREHOUSE=<WAREHOUSE>
+export DATABASE=<DATABASE>
+export SCHEMA=<SCHEMA>
+```
 
 Verify:
 
