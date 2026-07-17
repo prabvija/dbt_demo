@@ -27,5 +27,7 @@ seeds:
   practice_dbt:
     examples:
       +schema: examples
+    compile:
+      +schema: examples
     project:
       +schema: raw               # seeds land in <target_schema>_raw
