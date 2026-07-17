@@ -2,7 +2,7 @@
 -- Here we depend on the source-based model above.
 
 select
-    continent,
+    id,
     count(*) as country_count
-from {{ ref('04_using_source') }}
-group by continent
+from {{ ref('first_model') }}
+group by id
