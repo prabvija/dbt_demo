@@ -1,15 +1,19 @@
-# Ensure this name exactly matches the "profile:" key in your dbt_project.yml
-my_snowflake_profile:
+# Copy this file to ~/.dbt/profiles.yml  (macOS/Linux)
+# or to  %USERPROFILE%\.dbt\profiles.yml   (Windows)
+#
+# The profile name below MUST match `profile:` in dbt_project.yml.
+
+dbt_demo:
   target: dev
   outputs:
     dev:
       type: snowflake
-      account: "{{ env_var('ACCOUNT') }}"
-      user: "{{ env_var('USER') }}"
-      password: "{{ env_var('PASSWORD') }}"
-      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
-      warehouse: "{{ env_var('WAREHOUSE') }}"
-      database: "{{ env_var('DATABASE') }}"
-      schema: "{{ env_var('SCHEMA') }}"
-      threads: 1
+      account:   "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user:      "{{ env_var('SNOWFLAKE_USER') }}"
+      password:  "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role:      "{{ env_var('SNOWFLAKE_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      database:  "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      schema:    "{{ env_var('SNOWFLAKE_SCHEMA') }}"
+      threads: 4
       client_session_keep_alive: False

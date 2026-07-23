@@ -1,0 +1,14 @@
+version: 2
+
+# Sources = raw tables that already exist in the warehouse.
+# Here they are produced by `dbt seed` (see seeds/) into <schema>_raw.
+# We reference them via source('raw', '<table>') so dbt can build lineage.
+
+sources:
+  - name: raw
+    database: "{{ target.database }}"
+    schema: "{{ target.schema }}_raw"
+    tables:
+      - name: raw_customers
+      - name: raw_orders
+      - name: raw_products

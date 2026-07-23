@@ -1,33 +1,36 @@
-name: 'practice_dbt'
+name: 'dbt_demo'
 version: '1.0.0'
 config-version: 2
 
-profile: 'my_snowflake_profile'
+profile: 'dbt_demo'
 
-model-paths:  ["models"]
-seed-paths:   ["seeds"]
-macro-paths:  ["macros"]
-test-paths:   ["tests"]
-docs-paths:   ["docs"]
+model-paths:   ["models"]
+seed-paths:    ["seeds"]
+macro-paths:   ["macros"]
+test-paths:    ["tests"]
 
-# Two clean areas:
-#   examples/  → tiny standalone models used in the tech talk to explain concepts
-#   project/   → the mini end-to-end pipeline the class will run
+# Standard dbt layered project for the bootcamp:
+#   seeds  ->  sources  ->  staging  ->  intermediate  ->  marts
+#
+# Layer conventions:
+#   seeds        : raw CSVs loaded via `dbt seed` (landed in <schema>_raw)
+#   sources      : declared in models/staging/_sources.yml (point at the seeds)
+#   staging      : 1:1 with sources, rename/cast only  (view)
+#   intermediate : joins & business logic building blocks (view)
+#   marts        : final BI-facing dims & facts (table)
+
 models:
-  practice_dbt:
-    examples:
+  dbt_demo:
+    staging:
       +materialized: view
-      +schema: examples          # goes into <target_schema>_examples
-    project:
-      staging:      { +materialized: view }
-      intermediate: { +materialized: view }
-      marts:        { +materialized: table }
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts
 
 seeds:
-  practice_dbt:
-    examples:
-      +schema: examples
-    compile:
-      +schema: examples
-    project:
-      +schema: raw               # seeds land in <target_schema>_raw
+  dbt_demo:
+    +schema: raw
